@@ -1,61 +1,43 @@
-/* Estilo General */
+/* style.css */
 body {
-    background: radial-gradient(circle at top right, #1e293b, #010409);
+    /* Un degradado profundo que da sensación de espacio, no solo negro */
+    background: radial-gradient(circle at top right, #1e293b, #0f172a, #020617);
     min-height: 100vh;
-    color: #e2e8f0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #f1f5f9;
+    font-family: 'Inter', sans-serif;
 }
 
-/* Efecto de cristal (Glassmorphism) */
-.glass {
-    background: rgba(255, 255, 255, 0.03);
+/* Tarjetas con efecto de cristal brillante */
+.glass-card {
+    background: rgba(30, 41, 59, 0.7);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border: 1px solid rgba(56, 189, 248, 0.2); /* Borde celeste sutil */
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
 }
 
-/* Gradiente para el texto del título */
-.text-gradient {
-    background: linear-gradient(90deg, #38bdf8, #818cf8);
+/* El botón de ANALIZAR: Ahora será el protagonista */
+.btn-primary {
+    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+    color: #0f172a;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); /* Resplandor neón */
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
+    filter: brightness(1.1);
+}
+
+/* Títulos con degradado */
+.gradient-text {
+    background: linear-gradient(to right, #7dd3fc, #c084fc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-/* Burbujas de chat */
-.user-msg {
-    background: linear-gradient(135deg, #0284c7, #0369a1);
-    padding: 0.75rem 1.25rem;
-    border-radius: 1.25rem 1.25rem 0 1.25rem;
-}
-
-.ai-msg {
-    border-left: 4px solid #38bdf8;
-    padding: 1rem;
-    border-radius: 0 1.25rem 1.25rem 1.25rem;
-}
-
-/* Animación de los puntitos de carga */
-.dot-flashing {
-    display: inline-block;
-    position: relative;
-    width: 8px;
-    height: 8px;
-    border-radius: 5px;
-    background-color: #38bdf8;
-    animation: dot-flashing 1s infinite linear alternate;
-}
-
-@keyframes dot-flashing {
-    0% { background-color: #38bdf8; }
-    50%, 100% { background-color: rgba(56, 189, 248, 0.2); }
-}
-
-/* Scrollbar estética */
-::-webkit-scrollbar {
-    width: 6px;
-}
-::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
+    font-weight: bold;
 }
