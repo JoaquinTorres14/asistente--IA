@@ -1,0 +1,12 @@
+{
+  "name": "lexicode-ai",
+  "version": "1.0.0",
+  "description": "Backend para LexiCode AI",
+  "main": "api/mentor.js",
+  "dependencies": {
+    "node-fetch": "^3.3.0"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}
