@@ -219,17 +219,31 @@
     recognition.onresult = (e) => preguntarIA(e.results[0][0].transcript);
 
     function hablar(texto) {
-        if (!vozActiva) return;
-        window.speechSynthesis.cancel();
-        // Limpiamos el Markdown antes de hablar para que no diga "asterisco asterisco"
-        const textoLimpio = texto.replace(/\*|_|#|`|\[|\]/g, "");
-        const mensaje = new SpeechSynthesisUtterance(textoLimpio);
-        const mejorVoz = availableVoices.find(v => v.lang.includes('es') && v.name.includes('Natural')) || 
-                         availableVoices.find(v => v.lang.includes('es'));
-        if (mejorVoz) mensaje.voice = mejorVoz;
-        mensaje.rate = 0.95; 
-        window.speechSynthesis.speak(mensaje);
+    const synth = window.speechSynthesis;
+    // Cancelar cualquier voz que esté hablando para que no se pisen
+    synth.cancel(); 
+
+    const utterance = new SpeechSynthesisUtterance(texto);
+    
+    // CONFIGURACIÓN DE ENERGÍA
+    utterance.rate = 1.15;  // 15% más rápido para que no sea lenta
+    utterance.pitch = 1.2;  // Tono un poco más agudo (suena más alegre/joven)
+    utterance.volume = 1;   // Volumen al máximo
+
+    
+    const voices = synth.getVoices();
+    
+    // Intentamos buscar voces de Google o Microsoft que son menos metálicas
+    const mejorVoz = voices.find(v => v.name.includes('Google') && v.lang.includes('es')) || 
+                     voices.find(v => v.name.includes('Helena') || v.name.includes('Laura')) ||
+                     voices.find(v => v.lang.includes('es'));
+
+    if (mejorVoz) {
+        utterance.voice = mejorVoz;
     }
+
+    synth.speak(utterance);
+}
 
     function copiarCodigo() {
         navigator.clipboard.writeText(codigoVisual.textContent).then(() => alert("¡Código copiado al portapapeles!"));
